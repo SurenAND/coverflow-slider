@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { sliderData } from "./data";
+import "./styles.css";
+import { swiperConfig } from "./swiperSetting";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Swiper {...swiperConfig}>
+        {sliderData.map((item) => (
+          <SwiperSlide key={item.id}>
+            <h1>{item.title}</h1>
+            <img src={item.imageUrl} alt={item.title} />
+            <div className="description">
+              <p>{item.description}</p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </main>
   );
 }
 
